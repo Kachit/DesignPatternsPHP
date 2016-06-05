@@ -8,9 +8,13 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 {
     public function testSetAndGetLogger()
     {
-        Registry::set(Registry::LOGGER, new \StdClass());
+        $key = Registry::LOGGER;
+        $object = new \StdClass();
 
-        $logger = Registry::get(Registry::LOGGER);
-        $this->assertInstanceOf('StdClass', $logger);
+        Registry::set($key, $object);
+        $actual = Registry::get($key);
+
+        $this->assertEquals($object, $actual);
+        $this->assertInstanceOf('StdClass', $actual);
     }
 }
